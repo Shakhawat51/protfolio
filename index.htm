@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakhawat Hasan — Oracle Full-Stack Software Developer</title>
+<meta name="description" content="Shakhawat Hasan — Enterprise Oracle Developer building scalable systems, workflow automation, and AI-enhanced software solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        heading: ['Outfit', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      colors: {
+        dark: { 950: '#050510', 900: '#0a0a1a', 800: '#0d1117', 700: '#161b22', 600: '#1c2333' },
+        neon: { blue: '#3b82f6', purple: '#8b5cf6', cyan: '#06b6d4', pink: '#ec4899' },
+      }
+    }
+  }
+}
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  ::selection { background: rgba(139,92,246,0.3); color: #e2e8f0; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #050510; }
+  ::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.5); }
+  body { background: #050510; color: #e2e8f0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* Particle Canvas */
+  #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+  /* Animated Grid */
+  .grid-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridMove 25s linear infinite;
+  }
+  @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(80px,80px); } }
+
+  /* Noise Overlay */
+  .noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .glass-strong {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-ultra {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* Glow Effects */
+  .glow-blue { box-shadow: 0 0 30px rgba(59,130,246,0.12), 0 0 60px rgba(59,130,246,0.04), inset 0 0 30px rgba(59,130,246,0.03); }
+  .glow-purple { box-shadow: 0 0 30px rgba(139,92,246,0.12), 0 0 60px rgba(139,92,246,0.04), inset 0 0 30px rgba(139,92,246,0.03); }
+  .glow-cyan { box-shadow: 0 0 30px rgba(6,182,212,0.12), 0 0 60px rgba(6,182,212,0.04); }
+
+  /* Profile Ring */
+  .profile-ring {
+    position: relative;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6);
+   /* animation: ringRotate 6s linear infinite;*/
+  }
+  @keyframes ringRotate { to { filter: hue-rotate(360deg); } }
+  .profile-ring::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6);
+    filter: blur(30px);
+    opacity: 0.35;
+    animation: ringRotate 6s linear infinite;
+    z-index: -1;
+  }
+  .profile-ring::after {
+    content: '';
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, #3b82f640, #8b5cf640, #ec489940, #06b6d440, #3b82f640);
+    filter: blur(50px);
+    opacity: 0.2;
+    z-index: -2;
+  }
+  .profile-ring img {
+    border-radius: 50%;
+    display: block;
+    border: 3px solid #050510;
+  }
+
+  /* Hero Background Portrait */
+  .hero-bg-portrait {
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55%;
+    height: 90%;
+    object-fit: cover;
+    object-position: center top;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%),
+                 linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%),
+                         linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    opacity: 0.5;
+    z-index: 2;
+    pointer-events: none;
+    filter: saturate(0.6) contrast(1.1) brightness(0.9);
+  }
+  @media (max-width: 1024px) {
+    .hero-bg-portrait {
+      width: 80%;
+      right: -15%;
+      opacity: 0.2;
+    }
+  }
+
+  /* Typing Cursor */
+  .typing-cursor::after {
+    content: '▌';
+    animation: blink 0.9s step-end infinite;
+    color: #8b5cf6;
+    font-weight: 300;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Floating */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(-5px) rotate(-1deg); }
+  }
+  .float-1 { animation: float 5s ease-in-out infinite; }
+  .float-2 { animation: float 6s ease-in-out infinite 0.5s; }
+  .float-3 { animation: float 7s ease-in-out infinite 1s; }
+  .float-4 { animation: float 5.5s ease-in-out infinite 1.5s; }
+  .float-5 { animation: float 6.5s ease-in-out infinite 0.8s; }
+
+  /* Shimmer */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .shimmer-text {
+    background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 25%, #f472b6 50%, #a78bfa 75%, #60a5fa 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* Scroll Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+  /* Skill Bar */
+  .skill-fill { width: 0; transition: width 1.8s cubic-bezier(0.16,1,0.3,1); }
+  .skill-fill.active { width: var(--skill-width); }
+
+  /* Card Hover */
+  .card-hover {
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.6s ease, border-color 0.4s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 25px 60px rgba(139,92,246,0.1), 0 0 40px rgba(59,130,246,0.04);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-purple {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Timeline */
+  .timeline-line { background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #06b6d4, transparent); }
+  .timeline-dot {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    box-shadow: 0 0 20px rgba(139,92,246,0.5), 0 0 40px rgba(139,92,246,0.2);
+  }
+
+  /* Button Glow */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    filter: blur(12px);
+  }
+  .btn-glow:hover::before { opacity: 0.7; }
+  .btn-glow:hover { transform: translateY(-3px); }
+
+  /* Shiny border on hover */
+  .shiny-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .shiny-border::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent 0%, transparent 70%, rgba(139,92,246,0.3) 80%, transparent 100%);
+    animation: rotateBorder 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+  }
+  .shiny-border:hover::after { opacity: 1; }
+  @keyframes rotateBorder { to { transform: rotate(360deg); } }
+
+  /* Mouse Follow Gradient */
+  .mouse-gradient {
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transition: transform 0.15s ease-out;
+  }
+
+  /* Nav */
+  .nav-blur {
+    background: rgba(5,5,16,0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Tech Float */
+  .tech-float {
+    position: absolute;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    z-index: 5;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  /* GitHub Graph */
+  .gh-cell {
+    width: 11px; height: 11px; border-radius: 2px;
+    background: rgba(255,255,255,0.03);
+    transition: all 0.3s ease;
+  }
+  .gh-cell.l1 { background: rgba(139,92,246,0.15); }
+  .gh-cell.l2 { background: rgba(139,92,246,0.3); }
+  .gh-cell.l3 { background: rgba(59,130,246,0.5); }
+  .gh-cell.l4 { background: rgba(59,130,246,0.75); }
+  .gh-cell:hover { transform: scale(1.6); border-radius: 3px; }
+
+  /* Form */
+  .form-input {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 14px 18px;
+    color: #e2e8f0;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.4s ease;
+    outline: none;
+    width: 100%;
+  }
+  .form-input:focus {
+    border-color: rgba(139,92,246,0.4);
+    box-shadow: 0 0 25px rgba(139,92,246,0.08), inset 0 0 20px rgba(139,92,246,0.02);
+    background: rgba(255,255,255,0.04);
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
+
+  /* Pulse */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(139,92,246,0.2); }
+    50% { box-shadow: 0 0 35px rgba(139,92,246,0.4), 0 0 60px rgba(139,92,246,0.1); }
+  }
+
+  /* Section Divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(139,92,246,0.2), rgba(59,130,246,0.2), transparent);
+  }
+
+
+  
+    /* Performance Optimizations */
+  @media (max-width: 768px) {
+    .glass, .glass-strong, .glass-ultra {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      background: rgba(5,5,16,0.95) !important;
+    }
+    .noise-overlay, 
+    .grid-bg,
+    .hero-bg-portrait {
+      display: none !important;
+    }
+    .timeline-line {
+      opacity: 0.3;
+    }
+    .glow-blue, .glow-purple, .glow-cyan {
+      box-shadow: none !important;
+    }
+    .profile-ring::before,
+    .profile-ring::after {
+      display: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .marquee-track {
+      animation: none !important;
+    }
+    .grid-bg {
+      animation: none !important;
+    }
+  }
+
+  .marquee-track,
+  .card-hover,
+  .btn-glow {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Toast */
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+    padding: 16px 28px; border-radius: 14px;
+    background: rgba(139,92,246,0.12); backdrop-filter: blur(20px);
+    border: 1px solid rgba(139,92,246,0.25);
+    color: #e2e8f0; font-size: 14px; font-family: 'Inter', sans-serif;
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mobile-menu.open { transform: translateX(0); }
+
+  /* Hero Section Specific */
+  .hero-gradient-overlay {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(236,72,153,0.04) 0%, transparent 50%);
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    border-radius: 1px;
+    transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .animated-underline:hover::after { width: 100%; }
+
+  /* Ornamental line */
+  .ornament-line {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    border-radius: 1px;
+  }
+
+  /* Marquee for tech stack */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+
+/* Custom Cursor */
+* { cursor: none !important; }
+@media (pointer: coarse) { * { cursor: auto !important; } }
+
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #a78bfa;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.1s ease, background 0.3s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(139, 92, 246, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: width 0.35s cubic-bezier(0.16,1,0.3,1),
+              height 0.35s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.35s ease,
+              background 0.35s ease,
+              opacity 0.35s ease;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring.hover {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(229, 227, 235, 0.06);
+}
+
+.cursor-dot.hover {
+  transform: translate(-50%, -50%) scale(1.8);
+  background: #c4b5fd;
+}
+
+.cursor-ring.click {
+  width: 28px;
+  height: 28px;
+  border-color: rgba(59, 130, 246, 0.7);
+}
+
+</style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<canvas id="particles-canvas"></canvas>
+<div class="grid-bg"></div>
+<div class="noise-overlay"></div>
+<div class="mouse-gradient" id="mouseGradient"></div>
+<div class="toast" id="toast"></div>
+
+<!-- ======================== NAVIGATION ======================== -->
+<nav class="nav-blur fixed top-0 left-0 w-full z-50 border-b border-white/[0.03]" id="navbar">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-2.5 group">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-heading font-bold text-sm transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+        SH
+      </div>
+      <span class="text-white font-heading font-semibold text-sm tracking-wide hidden sm:block">
+        Shakhawat Hasan<span class="text-purple-400">.dev</span>
+      </span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">About</a>
+      <a href="#skills" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">Skills</a>
+      <a href="#experience" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">Experience</a>
+      <a href="#projects" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">Projects</a>
+      <a href="#github" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">GitHub</a>
+      <a href="#philosophy" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">AI</a>
+      <a href="#contact" class="animated-underline text-[11px] font-medium text-white/40 hover:text-white/90 transition-colors duration-300 uppercase tracking-[0.2em] font-heading">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-[11px] font-heading font-semibold uppercase tracking-[0.15em] btn-glow">
+        <span class="6w-3.5 h-3.5" data-icon="lucide:send"></span>
+        Hire Me
+      </a>
+      <button id="menuToggle" class="md:hidden text-white/60 hover:text-white transition-colors">
+        <span class="iconify w-6 h-6" data-icon="lucide:menu"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu fixed inset-0 z-50 bg-dark-950/98 backdrop-blur-2xl flex flex-col items-center justify-center gap-8" id="mobileMenu">
+  <button id="menuClose" class="absolute top-5 right-6 text-white/60 hover:text-white transition-colors">
+    <span class="iconify w-7 h-7" data-icon="lucide:x"></span>
+  </button>
+  <a href="#about" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">About</a>
+  <a href="#skills" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">Skills</a>
+  <a href="#experience" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">Experience</a>
+  <a href="#projects" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">Projects</a>
+  <a href="#github" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">GitHub</a>
+  <a href="#philosophy" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">AI Philosophy</a>
+  <a href="#contact" class="mobile-link text-2xl font-heading font-light text-white/60 hover:text-white transition-colors">Contact</a>
+  <a href="#contact" class="mt-6 px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-sm font-heading font-semibold uppercase tracking-wider">Hire Me</a>
+</div>
+
+<!-- ======================== HERO SECTION ======================== -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+  <!-- Hero Background Portrait -->
+  <!-- REPLACE THIS with your actual photo -->
+  
+  <img src="/assets/media/shefain1.jpg" alt="Shakhawat Hasan" class="hero-bg-portrait" loading="eager" decoding="async">
+
+  <!-- Gradient Overlays -->
+  <div class="absolute inset-0 hero-gradient-overlay z-[3] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-dark-950 via-dark-950/80 to-transparent z-[3] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-dark-950 to-transparent z-[3] pointer-events-none"></div>
+
+  <!-- Ambient Orbs -->
+  <div class="absolute top-1/4 left-[10%] w-[500px] h-[500px] bg-blue-600/[0.06] rounded-full filter blur-[150px] pointer-events-none z-[2]"></div>
+  <div class="absolute bottom-1/4 right-[20%] w-[400px] h-[400px] bg-purple-600/[0.06] rounded-full filter blur-[130px] pointer-events-none z-[2]"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full py-20 lg:py-0">
+    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+      <!-- Left Content -->
+      <div class="flex-1 text-center lg:text-left order-2 lg:order-1 z-10">
+        <!-- Status -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-strong mb-8 reveal">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" style="box-shadow: 0 0 8px rgba(52,211,153,0.5);"></span>
+          <span class="text-[10px] font-heading font-semibold text-white/60 uppercase tracking-[0.2em]">Available for Opportunities</span>
+        </div>
+
+        <!-- Greeting -->
+        <p class="text-sm md:text-base text-white/30 font-heading font-medium tracking-wider uppercase mb-3 reveal" style="transition-delay:0.05s;">Hello, I'm</p>
+
+        <!-- Name -->
+        <h1 class="text-5xl md:text-6xl lg:text-8xl font-heading font-bold leading-[0.95] tracking-tight mb-5 reveal" style="transition-delay:0.1s;">
+          <span class="text-white">Shakhawat</span><span class="shimmer-text">Hasan</span>
+        </h1>
+
+        <!-- Role -->
+        <div class="mb-5 reveal" style="transition-delay:0.2s;">
+          <p class="text-lg md:text-xl lg:text-2xl font-heading font-light text-white/50 tracking-wide">
+            <span class="text-white/90 font-medium">Oracle Software Developer</span>
+            <span class="mx-2 text-purple-500/60">|</span>
+            <span class="text-white/90 font-medium">Full-Stack Engineer</span>
+          </p>
+        </div>
+
+        <!-- Typing -->
+        <div class="mb-8 reveal" style="transition-delay:0.3s;">
+          <p class="text-xs md:text-sm text-white/30 font-mono">
+            <span class="text-purple-500/70">&gt;</span> <span id="typingText" class="typing-cursor text-white/50"></span>
+          </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-10 reveal" style="transition-delay:0.4s;">
+          <a href="#projects" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-[11px] font-heading font-bold uppercase tracking-[0.15em] btn-glow">
+            <span class="iconify w-4 h-4" data-icon="lucide:folder-open"></span>
+            View Projects
+          </a>
+          <a href="/assets/cv/Shefain_Resume.pdf" download onclick="showToast('Resume download is downloading!');" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full glass-strong text-white/70 text-[11px] font-heading font-bold uppercase tracking-[0.15em] hover:text-white transition-all duration-300 hover:border-purple-500/20">
+            <span class="iconify w-4 h-4" data-icon="lucide:download"></span>
+            Download CV
+          </a>
+
+          
+          <a href="#contact" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/10 text-white/50 text-[11px] font-heading font-bold uppercase tracking-[0.15em] hover:text-white hover:border-white/20 transition-all duration-300">
+            <span class="iconify w-4 h-4" data-icon="lucide:mail"></span>
+            Contact
+          </a>
+        </div>
+
+        <!-- Social -->
+        <div class="flex items-center justify-center lg:justify-start gap-3 reveal" style="transition-delay:0.5s;">
+          <a href="https://github.com/Shakhawat51" target="_blank" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/30 hover:text-white hover:border-purple-500/20 transition-all duration-400 hover:shadow-[0_0_20px_rgba(139,92,246,0.12)]">
+            <span class="iconify w-5 h-5" data-icon="mdi:github"></span>
+          </a>
+          <a href="https://www.linkedin.com/in/shakhawat-hasan/" target="_blank" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/30 hover:text-white hover:border-blue-500/20 transition-all duration-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.12)]">
+            <span class="iconify w-5 h-5" data-icon="mdi:linkedin"></span>
+          </a>
+          <a href="mailto:shakhawathasan51@gmail.com" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/30 hover:text-white hover:border-cyan-500/20 transition-all duration-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.12)]">
+            <span class="iconify w-5 h-5" data-icon="lucide:mail"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Profile Card (on top of bg portrait) -->
+      <div class="flex-shrink-0 order-1 lg:order-2 relative reveal-scale" style="transition-delay:0.15s;">
+        <!-- Floating Tech Tags -->
+        <div class="tech-float glass-strong float-1 text-blue-400 font-heading" style="top: -15px; right: -25px;">
+          <span class="iconify w-3.5 h-3.5 inline-block mr-1" data-icon="simple-icons:oracle"></span>Oracle Apex
+        </div>
+        <div class="tech-float glass-strong float-2 text-purple-400 font-heading" style="top: 90px; left: -55px;">
+          <span class="iconify w-3.5 h-3.5 inline-block mr-1" data-icon="mdi:language-html5"></span>HTML
+        </div>
+        <div class="tech-float glass-strong float-3 text-cyan-400 font-heading" style="bottom: 90px; left: -45px;">
+          <span class="iconify w-3.5 h-3.5 inline-block mr-1" data-icon="mdi:database"></span>SQL
+        </div>
+        <div class="tech-float glass-strong float-4 text-pink-400 font-heading" style="bottom: -15px; right: -35px;">
+          <span class="iconify w-3.5 h-3.5 inline-block mr-1" data-icon="mdi:language-css3"></span>CSS
+        </div>
+        <div class="tech-float glass-strong float-5 text-emerald-400 font-heading" style="top: -35px; left: 10px;">
+          <span class="iconify w-3.5 h-3.5 inline-block mr-1" data-icon="mdi:angular"></span>API
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/15 to-purple-500/15 filter blur-[50px] scale-125"></div>
+          <div class="profile-ring w-52 h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 relative z-10">
+            <!-- REPLACE THIS IMAGE SRC with your real photo -->
+            <img src="D:\aboutShakhawat-main\aboutshakhawat-main\assets\media\shakhawat.jpg" alt="Shakhawat Hasan" class="w-full h-full object-cover" loading="eager" decoding="async">
+          
+          </div>
+          <div class="absolute bottom-3 right-3 z-20 w-5 h-5 bg-emerald-400 rounded-full border-[3px] border-dark-950" style="box-shadow: 0 0 12px rgba(52,211,153,0.5);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal" style="transition-delay:0.9s;">
+      <span class="text-[9px] uppercase tracking-[0.3em] text-white/20 font-heading font-medium">Scroll</span>
+      <div class="w-5 h-9 rounded-full border border-white/10 flex items-start justify-center p-1.5">
+        <div class="w-1 h-2.5 rounded-full bg-white/30 animate-bounce"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== TECH MARQUEE ======================== -->
+<div class="relative z-10 py-6 border-y border-white/[0.03] overflow-hidden" style="background: rgba(5,5,16,0.8); backdrop-filter: blur(10px);">
+  <div class="flex whitespace-nowrap marquee-track">
+    <div class="flex items-center gap-10 px-5">
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Oracle Apex</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">SQL/PLSQL</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Entity Framework</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">HTML/CSS</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">JavaScript</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Oracle forms 12c,6i</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Report Builder</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Jasper Report</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">BI Publisher</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">AI-Enhanced Dev</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Git</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Frontend UI/UX Degine</span>
+      <span class="text-white/5">◆</span>
+    </div>
+    <div class="flex items-center gap-10 px-5">
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Oracle Apex</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">SQL/PLSQL</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Entity Framework</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">HTML/CSS</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">JavaScript</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Oracle forms 12c,6i</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Report Builder</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Jasper Report</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">BI Publisher</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">AI-Enhanced Dev</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Git</span>
+      <span class="text-white/5">◆</span>
+      <span class="text-[11px] font-heading font-semibold text-white/15 uppercase tracking-[0.2em]">Frontend UI/UX Degine</span>
+      <span class="text-white/5">◆</span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== ABOUT SECTION ======================== -->
+<section id="about" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-purple-600/[0.04] rounded-full filter blur-[140px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-purple-400 mb-3 block">Who I Am</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">About </span><span class="gradient-text">Me</span>
+      </h2>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-14 lg:gap-24 items-center">
+      <!-- Left -->
+      <div class="flex-1 reveal-left">
+        <p class="text-base md:text-lg text-white/60 leading-[1.8] mb-6">
+          I'm <span class="text-white font-heading font-semibold">Shakhawat Hasan</span>, a professional <span class="text-blue-400 font-heading font-medium">Oracle APEX Developer and Full-Stack Application Developer</span> with hands-on experience designing, developing, and supporting enterprise business applications across multiple industries.
+        </p>
+        <p class="text-base md:text-lg text-white/60 leading-[1.8] mb-6">
+          With deep expertise in <span class="text-purple-400 font-heading font-medium">Oracle APEX 24.2, SQL, PL/SQL, Oracle Forms & Reports</span>, <span class="text-purple-400 font-heading font-medium">Jasper Reports, HTML, CSS, JavaScript, and MS SQL Server. I specialize in transforming complex business processes into efficient, scalable, and user-friendly digital solutions.</span>, and modern frontend technologies, I architect and deliver mission-critical solutions — from <span class="text-cyan-400">HR management systems</span> and <span class="text-cyan-400">government-grade file tracking platforms</span> to <span class="text-cyan-400">supply chain and logistics automation</span>.
+        </p>
+        <p class="text-base md:text-lg text-white/60 leading-[1.8] mb-6">
+          My engineering philosophy is rooted in <span class="text-white font-heading font-medium">clean code practices</span>, <span class="text-white font-heading font-medium">scalable application architecture</span>, and an <span class="text-pink-400 font-heading font-medium">automation-first mindset</span> — leveraging AI-augmented development workflows to accelerate delivery, optimize architecture, and rapidly prototype enterprise solutions.
+        </p>
+        <p class="text-base md:text-lg text-white/60 leading-[1.8] mb-10">
+          I believe the modern engineer doesn't just write code — they orchestrate <span class="text-blue-400">intelligent systems</span>, harness <span class="text-purple-400">AI-assisted design</span>, and deliver <span class="text-cyan-400">business impact at scale</span>.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="glass rounded-2xl p-5 text-center card-hover shiny-border">
+            <div class="text-3xl font-heading font-bold gradient-text-blue">4+</div>
+            <div class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/30 mt-2">Enterprise Systems</div>
+          </div>
+          <div class="glass rounded-2xl p-5 text-center card-hover shiny-border">
+            <div class="text-3xl font-heading font-bold gradient-text-purple">10+</div>
+            <div class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/30 mt-2">Tech Stack</div>
+          </div>
+          <div class="glass rounded-2xl p-5 text-center card-hover shiny-border">
+            <div class="text-3xl font-heading font-bold gradient-text-blue">AI</div>
+            <div class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/30 mt-2">Enhanced Dev</div>
+          </div>
+          <div class="glass rounded-2xl p-5 text-center card-hover shiny-border">
+            <div class="text-3xl font-heading font-bold gradient-text-purple">∞</div>
+            <div class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/30 mt-2">Curiosity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Code Card -->
+      <div class="flex-shrink-0 w-full lg:w-auto reveal-right">
+        <div class="glass-ultra rounded-2xl overflow-hidden max-w-md mx-auto lg:mx-0 glow-purple" style="box-shadow: 0 0 80px rgba(139,92,246,0.06), 0 25px 50px rgba(0,0,0,0.3);">
+          <div class="flex items-center gap-2 px-6 py-3.5 border-b border-white/5">
+            <div class="w-3 h-3 rounded-full bg-red-400/50"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-400/50"></div>
+            <div class="w-3 h-3 rounded-full bg-green-400/50"></div>
+            <span class="text-[10px] text-white/20 ml-3 font-mono">developer.ts</span>
+          </div>
+          <div class="p-6 font-mono text-[13px] leading-7">
+            <div><span class="text-purple-400">const</span> <span class="text-blue-300">shefain</span> = {</div>
+            <div class="pl-5"><span class="text-cyan-300">role</span>: <span class="text-emerald-400">"Oracle Apex Full-Stack Developer"</span>,</div>
+            <div class="pl-5"><span class="text-cyan-300">focus</span>: [</div>
+            <div class="pl-10"><span class="text-emerald-400">"Enterprise Systems"</span>,</div>
+            <div class="pl-10"><span class="text-emerald-400">"Workflow Automation"</span>,</div>
+            <div class="pl-10"><span class="text-emerald-400">"AI-Augmented Engineering"</span></div>
+            <div class="pl-5">],</div>
+            <div class="pl-5"><span class="text-cyan-300">motto</span>: <span class="text-emerald-400">"Build scalable. Automate intelligently."</span>,</div>
+            <div class="pl-5"><span class="text-cyan-300">available</span>: <span class="text-amber-400">true</span></div>
+            <div>};</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== SKILLS SECTION ======================== -->
+<section id="skills" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/[0.04] rounded-full filter blur-[140px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-blue-400 mb-3 block">Technical Arsenal</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">Skills & </span><span class="gradient-text">Expertise</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- BACKEND -->
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal" style="transition-delay:0.05s;">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+            <span class="iconify w-5 h-5 text-white" data-icon="lucide:server"></span>
+          </div>
+          <div>
+            <h3 class="text-white font-heading font-semibold text-sm">Backend</h3>
+            <p class="text-white/25 text-[9px] font-heading uppercase tracking-[0.2em]">Oracle Apex Ecosystem</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="skill-item"><span class="text-white/50 text-xs">C#</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:95%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">ASPOracle Apex Core MVC</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:92%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Oracle Apex Framework</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:88%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">REST API Development</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:90%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Entity Framework Core</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:87%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">LINQ</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:90%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Auth & Authorization</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:85%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Role-Based Access Control</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style="--skill-width:88%"></div></div></div>
+        </div>
+      </div>
+
+      <!-- FRONTEND -->
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal" style="transition-delay:0.1s;">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.2)]">
+            <span class="iconify w-5 h-5 text-white" data-icon="lucide:layout"></span>
+          </div>
+          <div>
+            <h3 class="text-white font-heading font-semibold text-sm">Frontend</h3>
+            <p class="text-white/25 text-[9px] font-heading uppercase tracking-[0.2em]">UI & Interaction</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="skill-item"><span class="text-white/50 text-xs">HTML5</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:95%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">CSS3</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:90%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">JavaScript ES6+</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:85%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">jQuery / AJAX</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:88%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Angular</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:75%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">React</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:78%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Responsive UI Design</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400" style="--skill-width:92%"></div></div></div>
+        </div>
+      </div>
+
+      <!-- DATABASE -->
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal" style="transition-delay:0.15s;">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-600 to-cyan-800 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+            <span class="iconify w-5 h-5 text-white" data-icon="lucide:database"></span>
+          </div>
+          <div>
+            <h3 class="text-white font-heading font-semibold text-sm">Database</h3>
+            <p class="text-white/25 text-[9px] font-heading uppercase tracking-[0.2em]">Data Architecture</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="skill-item"><span class="text-white/50 text-xs">MS SQL Server</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400" style="--skill-width:93%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">T-SQL</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400" style="--skill-width:90%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Stored Procedures</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400" style="--skill-width:88%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Query Optimization</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400" style="--skill-width:85%"></div></div></div>
+          <div class="skill-item"><span class="text-white/50 text-xs">Database Design</span><div class="flex-1 h-1.5 rounded-full bg-white/[0.04] ml-3"><div class="skill-fill h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400" style="--skill-width:90%"></div></div></div>
+        </div>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal" style="transition-delay:0.2s;">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-pink-600 to-pink-800 flex items-center justify-center shadow-[0_0_20px_rgba(236,72,153,0.2)]">
+            <span class="iconify w-5 h-5 text-white" data-icon="lucide:building-2"></span>
+          </div>
+          <div>
+            <h3 class="text-white font-heading font-semibold text-sm">Enterprise Solutions</h3>
+            <p class="text-white/25 text-[9px] font-heading uppercase tracking-[0.2em]">Business Systems</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">Workflow Automation</span>
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">HR Management</span>
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">Inventory Systems</span>
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">Supply Chain</span>
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">File Management</span>
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">Reporting Systems</span>
+          <span class="px-3 py-1.5 rounded-lg bg-pink-500/[0.08] text-pink-300 text-[10px] font-heading font-medium border border-pink-500/10">PDF/Excel Automation</span>
+        </div>
+      </div>
+
+      <!-- AI-ENHANCED -->
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal relative overflow-hidden" style="transition-delay:0.25s;">
+        <div class="absolute inset-0 bg-gradient-to-br from-violet-600/[0.03] to-blue-600/[0.03] pointer-events-none"></div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-800 flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.2)]" style="animation: pulse-glow 3s ease-in-out infinite;">
+              <span class="iconify w-5 h-5 text-white" data-icon="lucide:brain-circuit"></span>
+            </div>
+            <div>
+              <h3 class="text-white font-heading font-semibold text-sm">AI-Enhanced Dev</h3>
+              <p class="text-white/25 text-[9px] font-heading uppercase tracking-[0.2em]">Intelligent Workflows</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">AI-Assisted Engineering</span>
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">Intelligent Debugging</span>
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">Rapid AI Prototyping</span>
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">AI Productivity Pipelines</span>
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">Automated Workflows</span>
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">Prompt-Driven Engineering</span>
+            <span class="px-3 py-1.5 rounded-lg bg-violet-500/[0.08] text-violet-300 text-[10px] font-heading font-medium border border-violet-500/10">AI Architecture Planning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal" style="transition-delay:0.3s;">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+            <span class="iconify w-5 h-5 text-white" data-icon="lucide:wrench"></span>
+          </div>
+          <div>
+            <h3 class="text-white font-heading font-semibold text-sm">Tools & DevOps</h3>
+            <p class="text-white/25 text-[9px] font-heading uppercase tracking-[0.2em]">Dev Pipeline</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/[0.08] text-emerald-300 text-[10px] font-heading font-medium border border-emerald-500/10">Git</span>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/[0.08] text-emerald-300 text-[10px] font-heading font-medium border border-emerald-500/10">GitHub</span>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/[0.08] text-emerald-300 text-[10px] font-heading font-medium border border-emerald-500/10">Visual Studio</span>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/[0.08] text-emerald-300 text-[10px] font-heading font-medium border border-emerald-500/10">Postman</span>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/[0.08] text-emerald-300 text-[10px] font-heading font-medium border border-emerald-500/10">Version Control</span>
+          <span class="px-3 py-1.5 rounded-lg bg-emerald-500/[0.08] text-emerald-300 text-[10px] font-heading font-medium border border-emerald-500/10">Deployment Workflows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== EXPERIENCE ======================== -->
+<section id="experience" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute top-1/3 right-0 w-80 h-80 bg-purple-600/[0.04] rounded-full filter blur-[120px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-cyan-400 mb-3 block">Career Journey</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">Work </span><span class="gradient-text">Experience</span>
+      </h2>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto">
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px timeline-line md:-translate-x-1/2"></div>
+
+      <div class="relative flex flex-col md:flex-row gap-8 mb-12 reveal">
+        <div class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full timeline-dot -translate-x-1/2 z-10 mt-1"></div>
+        <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+          <span class="text-[10px] font-heading font-bold uppercase tracking-[0.2em] text-blue-400">Dec 2024 — Present</span>
+        </div>
+        <div class="md:w-1/2 md:pl-12 pl-12">
+          <div class="glass-ultra rounded-2xl p-7 card-hover glow-purple">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.25)]">
+                <span class="iconify w-5 h-5 text-white" data-icon="lucide:code-2"></span>
+              </div>
+              <div>
+                <h3 class="text-white font-heading font-semibold">Software Developer</h3>
+                <p class="text-purple-400 text-sm font-heading font-medium">GCTL Infosys</p>
+              </div>
+            </div>
+            <ul class="space-y-2.5">
+              <li class="flex items-start gap-2.5 text-white/50 text-sm"><span class="iconify w-4 h-4 text-blue-400/70 mt-0.5 flex-shrink-0" data-icon="lucide:chevron-right"></span>Enterprise application development with ASPOracle Apex Core MVC</li>
+              <li class="flex items-start gap-2.5 text-white/50 text-sm"><span class="iconify w-4 h-4 text-blue-400/70 mt-0.5 flex-shrink-0" data-icon="lucide:chevron-right"></span>Scalable architecture design for multi-department systems</li>
+              <li class="flex items-start gap-2.5 text-white/50 text-sm"><span class="iconify w-4 h-4 text-blue-400/70 mt-0.5 flex-shrink-0" data-icon="lucide:chevron-right"></span>Workflow automation and role-based access control systems</li>
+              <li class="flex items-start gap-2.5 text-white/50 text-sm"><span class="iconify w-4 h-4 text-blue-400/70 mt-0.5 flex-shrink-0" data-icon="lucide:chevron-right"></span>Reporting solutions with PDF/Excel automation</li>
+              <li class="flex items-start gap-2.5 text-white/50 text-sm"><span class="iconify w-4 h-4 text-blue-400/70 mt-0.5 flex-shrink-0" data-icon="lucide:chevron-right"></span>Cross-department business system integration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="absolute left-4 md:left-1/2 bottom-0 w-3 h-3 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 -translate-x-1/2 z-10" style="box-shadow: 0 0 15px rgba(6,182,212,0.4);"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== PROJECTS ======================== -->
+<section id="projects" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute top-0 left-1/3 w-96 h-96 bg-blue-600/[0.04] rounded-full filter blur-[140px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-pink-400 mb-3 block">Portfolio Showcase</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">Featured </span><span class="gradient-text">Projects</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- HRM -->
+      <div class="glass rounded-2xl overflow-hidden card-hover reveal group" style="transition-delay:0.05s;">
+        <div class="relative h-56 bg-gradient-to-br from-blue-900/30 to-purple-900/30 overflow-hidden">
+          <!-- REPLACE with real screenshot -->
+          <img src="https://picsum.photos/seed/hrm-dashboard-ui/800/400.jpg" alt="HRM System" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/60 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-blue-500/15 backdrop-blur-md text-blue-300 text-[9px] font-heading font-bold uppercase tracking-[0.15em] border border-blue-500/15">Enterprise</div>
+        </div>
+        <div class="p-7">
+          <h3 class="text-white font-heading font-semibold text-lg mb-2">Human Resource Management System</h3>
+          <p class="text-white/40 text-sm mb-5 leading-relaxed">Complete employee lifecycle management with leave tracking, appraisal workflows, promotion pipelines, and automated reporting dashboards.</p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="px-2.5 py-1 rounded-md bg-blue-500/[0.08] text-blue-300 text-[9px] font-heading font-semibold uppercase tracking-wider">ASPOracle Apex Core MVC</span>
+            <span class="px-2.5 py-1 rounded-md bg-cyan-500/[0.08] text-cyan-300 text-[9px] font-heading font-semibold uppercase tracking-wider">MS SQL Server</span>
+          </div>
+          <ul class="space-y-1.5 mb-6">
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-400/60"></span>Employee lifecycle management</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-400/60"></span>Leave & appraisal workflows</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-400/60"></span>PDF/Excel report automation</li>
+          </ul>
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/xisxus" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.04] text-white/50 text-[11px] font-heading font-medium hover:bg-white/[0.08] hover:text-white transition-all duration-300 border border-white/5">
+              <span class="iconify w-3.5 h-3.5" data-icon="mdi:github"></span> Code
+            </a>
+            <a href="#" onclick="showToast('Live demo coming soon!'); return false;" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[11px] font-heading font-semibold btn-glow">
+              <span class="iconify w-3.5 h-3.5" data-icon="lucide:external-link"></span> Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NBR -->
+      <div class="glass rounded-2xl overflow-hidden card-hover reveal group" style="transition-delay:0.1s;">
+        <div class="relative h-56 bg-gradient-to-br from-purple-900/30 to-pink-900/30 overflow-hidden">
+          <img src="https://picsum.photos/seed/nbr-gov-dashboard/800/400.jpg" alt="NBR System" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/60 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-purple-500/15 backdrop-blur-md text-purple-300 text-[9px] font-heading font-bold uppercase tracking-[0.15em] border border-purple-500/15">Government-Grade</div>
+        </div>
+        <div class="p-7">
+          <h3 class="text-white font-heading font-semibold text-lg mb-2">NBR File Management System</h3>
+          <p class="text-white/40 text-sm mb-5 leading-relaxed">Government-grade file tracking with tax calculation workflows, document management, equipment requisition, and multi-level approval systems.</p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="px-2.5 py-1 rounded-md bg-blue-500/[0.08] text-blue-300 text-[9px] font-heading font-semibold uppercase tracking-wider">ASPOracle Apex Core MVC</span>
+            <span class="px-2.5 py-1 rounded-md bg-purple-500/[0.08] text-purple-300 text-[9px] font-heading font-semibold uppercase tracking-wider">jQuery</span>
+            <span class="px-2.5 py-1 rounded-md bg-cyan-500/[0.08] text-cyan-300 text-[9px] font-heading font-semibold uppercase tracking-wider">MS SQL Server</span>
+          </div>
+          <ul class="space-y-1.5 mb-6">
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-purple-400/60"></span>Government file tracking</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-purple-400/60"></span>Tax calculation workflows</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-purple-400/60"></span>Multi-level approval systems</li>
+          </ul>
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/xisxus" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.04] text-white/50 text-[11px] font-heading font-medium hover:bg-white/[0.08] hover:text-white transition-all duration-300 border border-white/5">
+              <span class="iconify w-3.5 h-3.5" data-icon="mdi:github"></span> Code
+            </a>
+            <a href="#" onclick="showToast('Live demo coming soon!'); return false;" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white text-[11px] font-heading font-semibold btn-glow">
+              <span class="iconify w-3.5 h-3.5" data-icon="lucide:external-link"></span> Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supply Chain -->
+      <div class="glass rounded-2xl overflow-hidden card-hover reveal group" style="transition-delay:0.15s;">
+        <div class="relative h-56 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 overflow-hidden">
+          <img src="https://picsum.photos/seed/supply-chain-ops/800/400.jpg" alt="Supply Chain" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/60 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-cyan-500/15 backdrop-blur-md text-cyan-300 text-[9px] font-heading font-bold uppercase tracking-[0.15em] border border-cyan-500/15">Supply Chain</div>
+        </div>
+        <div class="p-7">
+          <h3 class="text-white font-heading font-semibold text-lg mb-2">Supply Chain Management System</h3>
+          <p class="text-white/40 text-sm mb-5 leading-relaxed">End-to-end inventory tracking, procurement management, supplier coordination, construction material distribution, and analytics dashboards.</p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="px-2.5 py-1 rounded-md bg-blue-500/[0.08] text-blue-300 text-[9px] font-heading font-semibold uppercase tracking-wider">ASPOracle Apex Core MVC</span>
+            <span class="px-2.5 py-1 rounded-md bg-cyan-500/[0.08] text-cyan-300 text-[9px] font-heading font-semibold uppercase tracking-wider">MS SQL Server</span>
+          </div>
+          <ul class="space-y-1.5 mb-6">
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-cyan-400/60"></span>Inventory & procurement</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-cyan-400/60"></span>Supplier management</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-cyan-400/60"></span>Analytics & reporting</li>
+          </ul>
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/xisxus" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.04] text-white/50 text-[11px] font-heading font-medium hover:bg-white/[0.08] hover:text-white transition-all duration-300 border border-white/5">
+              <span class="iconify w-3.5 h-3.5" data-icon="mdi:github"></span> Code
+            </a>
+            <a href="#" onclick="showToast('Live demo coming soon!'); return false;" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-[11px] font-heading font-semibold btn-glow">
+              <span class="iconify w-3.5 h-3.5" data-icon="lucide:external-link"></span> Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clearing & Forwarding -->
+      <div class="glass rounded-2xl overflow-hidden card-hover reveal group" style="transition-delay:0.2s;">
+        <div class="relative h-56 bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 overflow-hidden">
+          <img src="https://picsum.photos/seed/logistics-freight/800/400.jpg" alt="Clearing & Forwarding" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/60 to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-emerald-500/15 backdrop-blur-md text-emerald-300 text-[9px] font-heading font-bold uppercase tracking-[0.15em] border border-emerald-500/15">Logistics</div>
+        </div>
+        <div class="p-7">
+          <h3 class="text-white font-heading font-semibold text-lg mb-2">Clearing & Forwarding Management System</h3>
+          <p class="text-white/40 text-sm mb-5 leading-relaxed">Shipment scheduling, cargo operations, logistics automation, document tracking, and comprehensive workflow management for freight operations.</p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="px-2.5 py-1 rounded-md bg-blue-500/[0.08] text-blue-300 text-[9px] font-heading font-semibold uppercase tracking-wider">ASPOracle Apex Core MVC</span>
+            <span class="px-2.5 py-1 rounded-md bg-cyan-500/[0.08] text-cyan-300 text-[9px] font-heading font-semibold uppercase tracking-wider">MS SQL Server</span>
+          </div>
+          <ul class="space-y-1.5 mb-6">
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-400/60"></span>Shipment & cargo operations</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-400/60"></span>Logistics automation</li>
+            <li class="text-white/30 text-xs flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-400/60"></span>Document tracking</li>
+          </ul>
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/xisxus" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.04] text-white/50 text-[11px] font-heading font-medium hover:bg-white/[0.08] hover:text-white transition-all duration-300 border border-white/5">
+              <span class="iconify w-3.5 h-3.5" data-icon="mdi:github"></span> Code
+            </a>
+            <a href="#" onclick="showToast('Live demo coming soon!'); return false;" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 text-white text-[11px] font-heading font-semibold btn-glow">
+              <span class="iconify w-3.5 h-3.5" data-icon="lucide:external-link"></span> Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== GITHUB ======================== -->
+<section id="github" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-600/[0.04] rounded-full filter blur-[120px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-emerald-400 mb-3 block">Open Source</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">GitHub </span><span class="gradient-text">Activity</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 glass rounded-2xl p-7 reveal" style="transition-delay:0.05s;">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-white font-heading font-semibold text-sm">Contribution Activity</h3>
+          <a href="https://github.com/xisxus" target="_blank" class="text-[10px] text-white/30 hover:text-white transition-colors flex items-center gap-1 font-heading font-medium uppercase tracking-wider">
+            <span class="iconify w-3.5 h-3.5" data-icon="mdi:github"></span> View Profile
+          </a>
+        </div>
+        <div class="overflow-x-auto">
+          <div id="contributionGraph" class="inline-grid gap-[3px]" style="grid-template-rows: repeat(7,1fr); grid-auto-flow: column; grid-auto-columns: 11px;"></div>
+        </div>
+        <div class="flex items-center justify-end gap-1 mt-3">
+          <span class="text-[9px] text-white/20 mr-1 font-heading">Less</span>
+          <div class="gh-cell"></div><div class="gh-cell l1"></div><div class="gh-cell l2"></div><div class="gh-cell l3"></div><div class="gh-cell l4"></div>
+          <span class="text-[9px] text-white/20 ml-1 font-heading">More</span>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay:0.1s;">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/15 to-blue-800/15 flex items-center justify-center border border-blue-500/10">
+              <span class="iconify w-6 h-6 text-blue-400" data-icon="lucide:book-open"></span>
+            </div>
+            <div>
+              <div class="text-2xl font-heading font-bold text-white">15+</div>
+              <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/30">Repositories</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-6 card-hover reveal" style="transition-delay:0.15s;">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/15 to-purple-800/15 flex items-center justify-center border border-purple-500/10">
+              <span class="iconify w-6 h-6 text-purple-400" data-icon="lucide:git-commit"></span>
+            </div>
+            <div>
+              <div class="text-2xl font-heading font-bold text-white">200+</div>
+              <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/30">Contributions</div>
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-7 reveal" style="transition-delay:0.2s;">
+          <h3 class="text-white font-heading font-semibold text-sm mb-5">Most Used Languages</h3>
+          <div class="space-y-3.5">
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-blue-300 font-heading font-medium">C#</span><span class="text-white/30">65%</span></div>
+              <div class="h-1.5 rounded-full bg-white/[0.04]"><div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400 skill-fill" style="--skill-width:65%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-purple-300 font-heading font-medium">JavaScript</span><span class="text-white/30">15%</span></div>
+              <div class="h-1.5 rounded-full bg-white/[0.04]"><div class="h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400 skill-fill" style="--skill-width:15%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-cyan-300 font-heading font-medium">T-SQL</span><span class="text-white/30">12%</span></div>
+              <div class="h-1.5 rounded-full bg-white/[0.04]"><div class="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400 skill-fill" style="--skill-width:12%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1.5"><span class="text-emerald-300 font-heading font-medium">HTML/CSS</span><span class="text-white/30">8%</span></div>
+              <div class="h-1.5 rounded-full bg-white/[0.04]"><div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 skill-fill" style="--skill-width:8%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== AI PHILOSOPHY ======================== -->
+<section id="philosophy" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/[0.03] to-transparent pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-600/[0.04] rounded-full filter blur-[160px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-violet-400 mb-3 block">Engineering Mindset</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">AI Engineering </span><span class="gradient-text">Philosophy</span>
+      </h2>
+      <p class="text-white/30 text-base md:text-lg mt-5 max-w-2xl mx-auto font-heading font-light">The modern engineer doesn't just write code — they orchestrate intelligent systems and deliver business impact at scale.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal group" style="transition-delay:0.05s;">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600/15 to-violet-800/15 flex items-center justify-center mb-5 border border-violet-500/10 group-hover:border-violet-500/25 transition-colors">
+          <span class="iconify w-6 h-6 text-violet-400" data-icon="lucide:brain-circuit"></span>
+        </div>
+        <h3 class="text-white font-heading font-semibold mb-2.5">AI-Assisted Productivity</h3>
+        <p class="text-white/40 text-sm leading-relaxed">Leveraging AI as a force multiplier in development — accelerating code generation, reducing boilerplate, and enabling focus on architecture and business logic.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal group" style="transition-delay:0.1s;">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/15 to-blue-800/15 flex items-center justify-center mb-5 border border-blue-500/10 group-hover:border-blue-500/25 transition-colors">
+          <span class="iconify w-6 h-6 text-blue-400" data-icon="lucide:zap"></span>
+        </div>
+        <h3 class="text-white font-heading font-semibold mb-2.5">Intelligent Automation</h3>
+        <p class="text-white/40 text-sm leading-relaxed">Automation-first engineering mindset — eliminating repetitive tasks, streamlining workflows, and building self-improving systems that scale with intelligence.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal group" style="transition-delay:0.15s;">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-600/15 to-cyan-800/15 flex items-center justify-center mb-5 border border-cyan-500/10 group-hover:border-cyan-500/25 transition-colors">
+          <span class="iconify w-6 h-6 text-cyan-400" data-icon="lucide:rocket"></span>
+        </div>
+        <h3 class="text-white font-heading font-semibold mb-2.5">Rapid Prototyping</h3>
+        <p class="text-white/40 text-sm leading-relaxed">AI-powered rapid solution prototyping — from concept to working system in record time, validating ideas faster and delivering value at unprecedented speed.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal group" style="transition-delay:0.2s;">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/15 to-purple-800/15 flex items-center justify-center mb-5 border border-purple-500/10 group-hover:border-purple-500/25 transition-colors">
+          <span class="iconify w-6 h-6 text-purple-400" data-icon="lucide:layers"></span>
+        </div>
+        <h3 class="text-white font-heading font-semibold mb-2.5">Scalable Architecture</h3>
+        <p class="text-white/40 text-sm leading-relaxed">Designing systems that scale from day one — AI-supported architecture planning ensures every decision is optimized for growth, performance, and maintainability.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal group" style="transition-delay:0.25s;">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-600/15 to-pink-800/15 flex items-center justify-center mb-5 border border-pink-500/10 group-hover:border-pink-500/25 transition-colors">
+          <span class="iconify w-6 h-6 text-pink-400" data-icon="lucide:target"></span>
+        </div>
+        <h3 class="text-white font-heading font-semibold mb-2.5">Business-Focused Engineering</h3>
+        <p class="text-white/40 text-sm leading-relaxed">Technology serves business outcomes. Every system is designed with measurable impact — reducing costs, accelerating processes, and driving operational excellence.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 card-hover shiny-border reveal group" style="transition-delay:0.3s;">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600/15 to-emerald-800/15 flex items-center justify-center mb-5 border border-emerald-500/10 group-hover:border-emerald-500/25 transition-colors">
+          <span class="iconify w-6 h-6 text-emerald-400" data-icon="lucide:refresh-cw"></span>
+        </div>
+        <h3 class="text-white font-heading font-semibold mb-2.5">Continuous Acceleration</h3>
+        <p class="text-white/40 text-sm leading-relaxed">Modern AI developer tooling creates a compounding advantage — each project builds faster, ships cleaner, and delivers more value than the last.</p>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="mt-20 text-center reveal">
+      <blockquote class="glass-ultra rounded-2xl p-10 md:p-14 max-w-3xl mx-auto glow-purple relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+        <span class="iconify w-10 h-10 text-purple-400/25 mb-5 block" data-icon="lucide:quote"></span>
+        <p class="text-lg md:text-xl text-white/70 font-serif font-light leading-relaxed italic">
+          "The future belongs to engineers who don't just write code, but orchestrate intelligent systems — where AI amplifies human ingenuity to build software that was previously unimaginable."
+        </p>
+        <footer class="mt-5 text-sm text-purple-400 font-heading font-medium">— Shakhawat Hasan</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== CONTACT ======================== -->
+<section id="contact" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute top-0 left-0 w-80 h-80 bg-blue-600/[0.04] rounded-full filter blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-600/[0.04] rounded-full filter blur-[120px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20 reveal">
+      <div class="ornament-line mx-auto mb-5"></div>
+      <span class="text-[10px] font-heading font-bold uppercase tracking-[0.3em] text-blue-400 mb-3 block">Get In Touch</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+        <span class="text-white">Let's </span><span class="gradient-text">Connect</span>
+      </h2>
+      <p class="text-white/30 text-base mt-5 max-w-lg mx-auto font-heading font-light">Have a project in mind or want to discuss opportunities? I'd love to hear from you.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+      <div class="space-y-5 reveal-left">
+        <a href="mailto:shefain3@gmail.com" class="glass rounded-2xl p-6 flex items-center gap-4 card-hover group block">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/15 to-blue-800/15 flex items-center justify-center border border-blue-500/10 group-hover:border-blue-500/25 transition-colors">
+            <span class="iconify w-5 h-5 text-blue-400" data-icon="lucide:mail"></span>
+          </div>
+          <div>
+            <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/25 mb-1">Email</div>
+            <div class="text-white font-heading font-medium text-sm">shefain3@gmail.com</div>
+          </div>
+          <span class="iconify w-4 h-4 text-white/15 group-hover:text-white/50 ml-auto transition-colors" data-icon="lucide:arrow-up-right"></span>
+        </a>
+        <a href="https://www.linkedin.com/in/md-shefain-12ab93116" target="_blank" class="glass rounded-2xl p-6 flex items-center gap-4 card-hover group block">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/15 to-blue-800/15 flex items-center justify-center border border-blue-500/10 group-hover:border-blue-500/25 transition-colors">
+            <span class="iconify w-5 h-5 text-blue-400" data-icon="mdi:linkedin"></span>
+          </div>
+          <div>
+            <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/25 mb-1">LinkedIn</div>
+            <div class="text-white font-heading font-medium text-sm">linkedin.com/in/MdShefain</div>
+          </div>
+          <span class="iconify w-4 h-4 text-white/15 group-hover:text-white/50 ml-auto transition-colors" data-icon="lucide:arrow-up-right"></span>
+        </a>
+
+        <a href="tel:+8801791956603" class="glass rounded-2xl p-6 flex items-center gap-4 card-hover group block">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600/15 to-green-800/15 flex items-center justify-center border border-green-500/10 group-hover:border-green-500/25 transition-colors">
+            <span class="iconify w-5 h-5 text-green-400" data-icon="lucide:phone"></span>
+          </div>
+          <div>
+            <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/25 mb-1">Call / WhatsApp</div>
+            <div class="text-white font-heading font-medium text-sm">+8801791956603</div>
+          </div>
+          <span class="iconify w-4 h-4 text-white/15 group-hover:text-white/50 ml-auto transition-colors" data-icon="lucide:arrow-up-right"></span>
+        </a>
+
+
+        <a href="https://github.com/xisxus" target="_blank" class="glass rounded-2xl p-6 flex items-center gap-4 card-hover group block">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/15 to-purple-800/15 flex items-center justify-center border border-purple-500/10 group-hover:border-purple-500/25 transition-colors">
+            <span class="iconify w-5 h-5 text-purple-400" data-icon="mdi:github"></span>
+          </div>
+          <div>
+            <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/25 mb-1">GitHub</div>
+            <div class="text-white font-heading font-medium text-sm">github.com/xisxus</div>
+          </div>
+          <span class="iconify w-4 h-4 text-white/15 group-hover:text-white/50 ml-auto transition-colors" data-icon="lucide:arrow-up-right"></span>
+        </a>
+        <div class="glass rounded-2xl p-6 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-600/15 to-cyan-800/15 flex items-center justify-center border border-cyan-500/10">
+            <span class="iconify w-5 h-5 text-cyan-400" data-icon="lucide:map-pin"></span>
+          </div>
+          <div>
+            <div class="text-[9px] font-heading uppercase tracking-[0.15em] text-white/25 mb-1">Location</div>
+            <div class="text-white font-heading font-medium text-sm">Bangladesh — Open to Remote</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <form id="contactForm" class="glass-ultra rounded-2xl p-8 glow-blue space-y-5 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+          <div>
+            <label class="text-[9px] font-heading font-semibold uppercase tracking-[0.15em] text-white/25 mb-2 block">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Doe" required>
+          </div>
+          <div>
+            <label class="text-[9px] font-heading font-semibold uppercase tracking-[0.15em] text-white/25 mb-2 block">Email Address</label>
+            <input type="email" class="form-input" placeholder="john@example.com" required>
+          </div>
+          <div>
+            <label class="text-[9px] font-heading font-semibold uppercase tracking-[0.15em] text-white/25 mb-2 block">Subject</label>
+            <input type="text" class="form-input" placeholder="Project Inquiry">
+          </div>
+          <div>
+            <label class="text-[9px] font-heading font-semibold uppercase tracking-[0.15em] text-white/25 mb-2 block">Message</label>
+            <textarea class="form-input resize-none" rows="4" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-[11px] font-heading font-bold uppercase tracking-[0.15em] btn-glow flex items-center justify-center gap-2">
+            <span class="iconify w-4 h-4" data-icon="lucide:send"></span>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="relative border-t border-white/[0.03] py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-heading font-bold text-xs">MS</div>
+        <div>
+          <span class="text-white/50 text-sm font-heading font-medium">Shakhawat Hasan</span>
+          <span class="text-white/15 text-[10px] block font-heading">© 2025 All rights reserved.</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#about" class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/25 hover:text-white transition-colors">About</a>
+        <a href="#projects" class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/25 hover:text-white transition-colors">Projects</a>
+        <a href="#skills" class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/25 hover:text-white transition-colors">Skills</a>
+        <a href="#contact" class="text-[10px] font-heading uppercase tracking-[0.15em] text-white/25 hover:text-white transition-colors">Contact</a>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <a href="https://github.com/xisxus" target="_blank" class="w-9 h-9 rounded-lg bg-white/[0.03] flex items-center justify-center text-white/25 hover:text-white hover:bg-white/[0.08] transition-all duration-300">
+          <span class="iconify w-4 h-4" data-icon="mdi:github"></span>
+        </a>
+        <a href="https://www.linkedin.com/in/md-shefain-12ab93116" target="_blank" class="w-9 h-9 rounded-lg bg-white/[0.03] flex items-center justify-center text-white/25 hover:text-white hover:bg-white/[0.08] transition-all duration-300">
+          <span class="iconify w-4 h-4" data-icon="mdi:linkedin"></span>
+        </a>
+        <a href="mailto:shefain3@gmail.com" class="w-9 h-9 rounded-lg bg-white/[0.03] flex items-center justify-center text-white/25 hover:text-white hover:bg-white/[0.08] transition-all duration-300">
+          <span class="iconify w-4 h-4" data-icon="lucide:mail"></span>
+        </a>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/[0.03] text-center">
+      <p class="text-[10px] text-white/15 font-heading">Crafted with precision and AI-enhanced workflows. Built for the future.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================== JAVASCRIPT ======================== -->
+<script>
+// ==================== PARTICLES ====================
+// ==================== OPTIMIZED PARTICLES ====================
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationId = null;
+  let isLowPerf = window.navigator.hardwareConcurrency < 4 || window.innerWidth < 768;
+  const COUNT = isLowPerf ? 20 : 35;
+
+  function resize() { 
+    canvas.width = window.innerWidth; 
+    canvas.height = window.innerHeight; 
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class P {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.2;
+      this.vy = (Math.random() - 0.5) * 0.2;
+      this.r = Math.random() * 0.8 + 0.3;
+      this.o = Math.random() * 0.15 + 0.03;
+    }
+    update() {
+      this.x += this.vx; 
+      this.y += this.vy;
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(139,92,246,${this.o})`;
+      ctx.fill();
+    }
+  }
+  
+  for (let i = 0; i < COUNT; i++) particles.push(new P());
+
+  function connect() {
+    if (isLowPerf) return;
+    
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(139,92,246,${0.02 * (1 - d/100)})`;
+          ctx.lineWidth = 0.3;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    connect();
+    animationId = requestAnimationFrame(animate);
+  }
+  
+  animate();
+  
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (animationId) cancelAnimationFrame(animationId);
+    } else {
+      animate();
+    }
+  });
+})();
+
+// ==================== MOUSE FOLLOW ====================
+const mg = document.getElementById('mouseGradient');
+document.addEventListener('mousemove', e => {
+  mg.style.transform = `translate(${e.clientX - 350}px, ${e.clientY - 350}px)`;
+});
+
+// ==================== TYPING ====================
+const texts = [
+  'Transforming complex business operations into scalable digital systems.',
+  'Engineering enterprise applications with performance, security, and intelligence.',
+  'AI-assisted full-stack developer focused on automation and business impact.',
+  'Building enterprise-grade software with scalable architecture.'
+];
+let ti = 0, ci = 0, del = false;
+const te = document.getElementById('typingText');
+function tw() {
+  const cur = texts[ti];
+  if (!del) {
+    te.textContent = cur.substring(0, ci + 1);
+    ci++;
+    if (ci === cur.length) { del = true; setTimeout(tw, 2800); return; }
+    setTimeout(tw, 35);
+  } else {
+    te.textContent = cur.substring(0, ci - 1);
+    ci--;
+    if (ci === 0) { del = false; ti = (ti + 1) % texts.length; setTimeout(tw, 400); return; }
+    setTimeout(tw, 18);
+  }
+}
+setTimeout(tw, 1200);
+
+// ==================== SCROLL REVEAL ====================
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => obs.observe(el));
+
+// ==================== SKILL BARS ====================
+const sobs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-fill').forEach(el => sobs.observe(el));
+
+// ==================== NAVBAR ====================
+window.addEventListener('scroll', () => {
+  const n = document.getElementById('navbar');
+  if (window.scrollY > 50) { n.style.background = 'rgba(5,5,16,0.95)'; n.style.borderBottomColor = 'rgba(255,255,255,0.05)'; }
+  else { n.style.background = ''; n.style.borderBottomColor = ''; }
+});
+
+// ==================== MOBILE MENU ====================
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== GITHUB GRAPH ====================
+(function() {
+  const g = document.getElementById('contributionGraph');
+  const lv = ['', 'l1', 'l2', 'l3', 'l4'];
+  for (let w = 0; w < 52; w++) {
+    for (let d = 0; d < 7; d++) {
+      const c = document.createElement('div');
+      c.className = 'gh-cell';
+      if (Math.random() > 0.6) c.classList.add(lv[Math.floor(Math.random() * 4) + 1]);
+      g.appendChild(c);
+    }
+  }
+})();
+
+// ==================== CONTACT FORM ====================
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  showToast('Message sent successfully! I\'ll get back to you soon. 🚀');
+  this.reset();
+});
+
+// ==================== TOAST ====================
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ==================== SMOOTH SCROLL ====================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ==================== SKILL ITEMS LAYOUT ====================
+document.querySelectorAll('.skill-item').forEach(i => {
+  i.style.display = 'flex';
+  i.style.alignItems = 'center';
+});
+
+
+// ==================== CUSTOM CURSOR ====================
+
+// ==================== OPTIMIZED CUSTOM CURSOR ====================
+const isTouchDevice = 'ontouchstart' in window;
+const isLowPerfDevice = window.navigator.hardwareConcurrency < 4;
+
+if (isTouchDevice || isLowPerfDevice) {
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (dot) dot.style.display = 'none';
+  if (ring) ring.style.display = 'none';
+  document.body.style.cursor = 'auto';
+} else {
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  let rafId = null;
+  let lastMoveTime = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - lastMoveTime > 16) {
+      mx = e.clientX; 
+      my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+      lastMoveTime = now;
+    } else {
+      mx = e.clientX; 
+      my = e.clientY;
+    }
+  });
+  
+  function animateRing() {
+    rx += (mx - rx) * 0.2;
+    ry += (my - ry) * 0.2;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    rafId = requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  
+  document.addEventListener('mousedown', () => ring.classList.add('click'));
+  document.addEventListener('mouseup', () => ring.classList.remove('click'));
+  
+  const hoverTargets = document.querySelectorAll('a, button, input, textarea, .card-hover, .btn-glow, .shiny-border');
+  hoverTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => { 
+      if (dot) dot.classList.add('hover'); 
+      if (ring) ring.classList.add('hover'); 
+    });
+    el.addEventListener('mouseleave', () => { 
+      if (dot) dot.classList.remove('hover'); 
+      if (ring) ring.classList.remove('hover'); 
+    });
+  });
+}
+
+
+</script>
+
+</body>
+</html>
